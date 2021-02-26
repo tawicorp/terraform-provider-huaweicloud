@@ -41,6 +41,14 @@ func resourceCdnDomainV1() *schema.Resource {
 					"web", "download", "video",
 				}, true),
 			},
+			"service_area": {
+				Type:     schema.TypeString,
+				Required: true,
+				ForceNew: true,
+				ValidateFunc: validation.StringInSlice([]string{
+					"outside_mainland_china", "mainland_china", "global",
+				}, true),
+			},
 			"sources": {
 				Type:     schema.TypeList,
 				Required: true,
@@ -78,11 +86,6 @@ func resourceCdnDomainV1() *schema.Resource {
 				Computed: true,
 			},
 			"domain_status": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-			"service_area": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,

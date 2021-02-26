@@ -86,6 +86,7 @@ resource "huaweicloud_cdn_domain_v1" "domain_1" {
   name   = "%s"
   type   = "web"
   enterprise_project_id = 0
+  service_area = "outside_mainland_china"
   sources {
       active = 1
       origin = "100.254.53.75"

@@ -13,8 +13,9 @@ This is an alternative to `huaweicloud_cdn_domain_v1`
 
 ```hcl
 resource "huaweicloud_cdn_domain" "domain_1" {
-  name = var.domain_name
-  type = "web"
+  name         = var.domain_name
+  type         = "web"
+  service_area = "outside_mainland_china"
 
   sources {
     origin      = var.origin_server
@@ -34,12 +35,13 @@ The following arguments are supported:
 * `type` - (Required, String, ForceNew) The service type. The valid values are  'web', 'download' and 'video'.
     Changing this parameter will create a new resource.
 
+* `service_area` - (Required, String, ForceNew) The area covered by the acceleration service. The valid values are 'outside_mainland_china', 'mainland_china', and 'global'.
+
 * `sources` - (Required, List, ForceNew) An array of one or more objects specifies the domain name of the origin server.
     The sources object structure is documented below.
 
 * `enterprise_project_id` - (Optional, String, ForceNew) The enterprise project id.
     Changing this parameter will create a new resource.
-
 
 The `sources` block supports:
 
@@ -60,9 +62,6 @@ In addition to all arguments above, the following attributes are exported:
 
 * `domain_status` - The status of the acceleration domain name. The available values are
     'online', 'offline', 'configuring', 'configure_failed', 'checking', 'check_failed'  and 'deleting.'
-
-* `service_area` - The area covered by the acceleration service.
-
 
 ## Timeouts
 This resource provides the following timeouts configuration options:
